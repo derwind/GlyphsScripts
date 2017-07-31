@@ -1,4 +1,4 @@
-#MenuTitle: Append Emoty Layers
+#MenuTitle: Move outlines to background layers
 # -*- coding: utf-8 -*-
 
 __doc__ = """

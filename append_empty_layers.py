@@ -1,4 +1,4 @@
-#MenuTitle: Append Emoty Layers
+#MenuTitle: Append Empty Layers
 # -*- coding: utf-8 -*-
 
 __doc__ = """
