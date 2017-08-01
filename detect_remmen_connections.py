@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 __doc__ = """
-Detect remmen connections in current glyph.
+Detect remmen connections in specified glyphs.
 """
 
 from GlyphsApp.plugins import *

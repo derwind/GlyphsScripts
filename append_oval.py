@@ -33,11 +33,11 @@ def draw_circle(r):
 def draw_oval(a, b, x=0, y=0, xscale=1, xskew=0, yskew=0, yscale=1):
     if a >= b:
         path = draw_circle(b)
-        path.applyTransform(1.*a/b, 0, 0, 1, 0, 0)
+        path.applyTransform([1.*a/b, 0, 0, 1, 0, 0])
     else:
         path = draw_circle(a)
-        path.applyTransform(1, 0, 0, 1.*b/a, 0, 0)
-    path.applyTransform(xscale, xskew, yskew, yscale, x, y)
+        path.applyTransform([1, 0, 0, 1.*b/a, 0, 0])
+    path.applyTransform([xscale, xskew, yskew, yscale, x, y])
     return path
 
 def main():
