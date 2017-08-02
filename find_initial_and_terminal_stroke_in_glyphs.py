@@ -5,6 +5,7 @@ __doc__ = """
 Find the terminal strokes in specified glyphs and mark them.
 """
 
+from Foundation import *
 import sys, math
 
 TARGET_CIDS = range(842, 924+1)
