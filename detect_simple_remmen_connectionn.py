@@ -11,6 +11,8 @@ import math
 TARGET_CIDS = [843, 866, 879, 880, 887]
 
 UPM = 1000
+ASCENDER = 880
+DESCENDER = -120
 
 def dist(pt1, pt2):
     return math.sqrt((pt1.x - pt2.x)**2 + (pt1.y - pt2.y)**2)
@@ -109,6 +111,11 @@ def center_vector_oval(oval_path):
 
     return oval_center(oval_path), direction
 
+def calculate_vertical_shift(layer1, layer2):
+    pitched_bottom = layer1.bounds.origin.y - layer1.BSB
+    pitched_top = layer2.bounds.origin.y + layer2.bounds.size.height + layer2.TSB
+    return round(pitched_top - pitched_bottom)
+
 def can_connect_as_remmen(fina_oval_path, init_oval_path, vertical_shift = UPM):
     """
     Can paths connect as remmen?
@@ -141,7 +148,8 @@ def main():
             layer2 = glyphs[gname2].layers[0]
             init, _ = detect_initial_final_stroke(layer2)
 
-            if can_connect_as_remmen(fina, init):
+            vertical_shift = calculate_vertical_shift(layer1, layer2)
+            if can_connect_as_remmen(fina, init, vertical_shift=vertical_shift):
                 print "{0}(U+{1:04X}) and {2}(U+{3:04X}) can connect as remmen".format(gname1, uni1, gname2, uni2)
             else:
                 print "{0}(U+{1:04X}) and {2}(U+{3:04X}) can not connect as remmen".format(gname1, uni1, gname2, uni2)
