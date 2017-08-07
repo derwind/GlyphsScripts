@@ -111,10 +111,31 @@ def center_vector_oval(oval_path):
 
     return oval_center(oval_path), direction
 
+def calculate_vmtx(layer):
+    ascender = Glyphs.font.masters[0].ascender
+    vertOriginY = ascender
+    if hasattr(layer, "vertOrigin"):
+        vertOriginY -= layer.vertOrigin()
+    vertOriginY = int(round(vertOriginY))
+
+    vertWidth = UPM
+    if hasattr(layer, "vertWidth") and layer.vertWidth() >= 0:
+        vertWidth = layer.vertWidth()
+    vertWidth = int(round(vertWidth))
+
+    return vertOriginY, vertWidth
+
 def calculate_vertical_shift(layer1, layer2):
-    pitched_bottom = layer1.bounds.origin.y - layer1.BSB
-    pitched_top = layer2.bounds.origin.y + layer2.bounds.size.height + layer2.TSB
-    return round(pitched_top - pitched_bottom)
+    ascender = Glyphs.font.masters[0].ascender
+    descender = Glyphs.font.masters[0].descender
+    vertOriginY1, vertAdcenceY1 = calculate_vmtx(layer1)
+    bottom_pitch = descender - (vertOriginY1 - vertAdcenceY1) # usually <= 0
+    bottom_pitch = round(bottom_pitch)
+    vertOriginY2, vertAdcenceY2 = calculate_vmtx(layer2)
+    top_pitch = vertOriginY2 - ascender # usually <= 0
+    top_pitch = round(top_pitch)
+
+    return UPM + bottom_pitch + top_pitch
 
 def can_connect_as_remmen(fina_oval_path, init_oval_path, vertical_shift = UPM):
     """
