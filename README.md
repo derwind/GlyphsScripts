@@ -32,6 +32,10 @@ Put the scripts into the Scripts folder which appears when you choose Open Scrip
 
 - **detect\_simple\_remmen\_connectionn.py** - Detect remmen connections in specified glyphs.
 
+#### misc
+
+- **split\_and\_join\_glyphs.py** - split and join glyphs whose contours' number exceeds threshold in order to run checkOutlines
+
 ### Requirements
 
 The plugin requires app version 2.4.1 (983) or later, running on OS X 10.12.3 or later. (Merely I confirmed the plugin only under these conditions...)

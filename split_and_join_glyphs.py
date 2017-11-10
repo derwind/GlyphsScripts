@@ -8,7 +8,7 @@ split and join glyphs
 import os, sys, re
 from GlyphsApp.plugins import *
 
-CONTOURS_THRESHOLD = 2
+CONTOURS_THRESHOLD = 256
 Y_THRESHOLD = 380
 
 class UfoSplitter(object):
